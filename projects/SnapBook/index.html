@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+      <link rel="stylesheet" href="bootstrap.min.css">
+      <link href="main.css" rel="stylesheet" />
+
+    <script src="angular.min.js"></script>
+  </head>
+  <body ng-app="myApp"> <!-- Used the 'ng-app' directive to define the application scope -->
+    <div class="header">
+      <div class="container">
+        <h1>SNAP BOOK</h1>
+      </div>
+    </div>
+
+    <div class="main" ng-controller="MainController"> <!-- 'ng-controller is a directive that defines the controller scope-->
+      <div class="container">
+
+        <h1>{{ title }}</h1> <!--we accessed $scope.title using {{title}} which are called expressions to display values on page-->
+        <h2>{{ promo }}</h2>
+
+        <div ng-repeat="product in products" class="col-md-12"> <!-- 'ng-repeat' is directive that loops through an array & displays each element-->
+  <div class="thumbnail"> 
+    <img ng-src="{{ product.cover }}">
+    <p class="title">{{ product.name }}</p> 
+    <p class="date">{{ product.pubdate | date }}</p> <!-- used filters which helps in formating the value of an expression-->
+	 
+    <div class="rating"> 
+  <p class="likes" ng-click="plusOne($index)">+{{ product.likes }}</p> <!--'ng-click' tells angularjs to run the 'plusOne()' function in controller-->
+  <p class="dislikes" ng-click="minusOne($index)">-{{ product.dislikes }}</p>
+</div>
+  </div> 
+</div>
+          
+        </div>
+
+      </div>
+    
+
+    <div class="footer">
+      <div class="container">
+        <h2>Available for iPhone and Android.</h2>
+        <img src="app-store.png" width="120px" />
+        <img src="google-play.png" width="110px" />
+      </div>
+    </div>
+
+
+    <!-- Modules -->
+    <script src="app.js"></script>
+
+    <!-- Controllers -->
+    <script src="MainController.js"></script>
+  </body>
+</html>
